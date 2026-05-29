@@ -11,6 +11,7 @@ use App\Http\Controllers\Admin\SeasonController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\SubmissionController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\VersionController;
 use App\Http\Controllers\ApiDataController;
 use App\Http\Controllers\CorrectionSubmissionController;
 use App\Http\Controllers\ProfileController;
@@ -68,6 +69,12 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
         ->name('submissions.versions.status');
     Route::delete('/submissions/{submission}/versions/{version}', [SubmissionController::class, 'destroyVersion'])
         ->name('submissions.versions.destroy');
+
+    Route::get('/versions', [VersionController::class, 'index'])->name('versions.index');
+    Route::patch('/versions/{version}/status', [VersionController::class, 'updateStatus'])
+        ->name('versions.update-status');
+    Route::delete('/versions/{version}', [VersionController::class, 'destroy'])
+        ->name('versions.destroy');
 
     Route::get('/corrections', [CorrectionLinkController::class, 'index'])->name('corrections.index');
     Route::post('/corrections', [CorrectionLinkController::class, 'store'])->name('corrections.store');

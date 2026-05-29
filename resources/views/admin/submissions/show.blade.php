@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="mt-4 grid gap-3 sm:grid-cols-[1fr_auto_auto]">
-                        <form method="POST" action="{{ route('admin.submissions.versions.status', ['submission' => $submission->id, 'version' => $version->id]) }}" class="flex gap-2">
+                        <form method="POST" action="{{ route('admin.versions.update-status', $version) }}" class="flex gap-2">
                             @csrf
                             @method('PATCH')
                             <select name="status" class="w-full rounded-lg border-slate-300 text-sm">
@@ -65,7 +65,7 @@
                             <x-button type="submit" variant="secondary">Guardar</x-button>
                         </form>
 
-                        <form method="POST" action="{{ route('admin.submissions.versions.destroy', ['submission' => $submission->id, 'version' => $version->id]) }}" onsubmit="return confirm('¿Eliminar versión?')">
+                        <form method="POST" action="{{ route('admin.versions.destroy', $version) }}" onsubmit="return confirm('¿Eliminar versión?')">
                             @csrf
                             @method('DELETE')
                             <x-button type="submit" variant="danger">Eliminar</x-button>
