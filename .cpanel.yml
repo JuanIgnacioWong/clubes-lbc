@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - chmod +x scripts/cpanel_deploy.sh
+    - /bin/bash scripts/cpanel_deploy.sh
