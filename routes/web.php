@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\ApiDataController;
 use App\Http\Controllers\CorrectionSubmissionController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PublicAssetController;
 use App\Http\Controllers\PublicRegistrationController;
 use App\Http\Controllers\RosterTemplateDownloadController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,8 @@ Route::get('/dashboard', fn () => redirect()->route('admin.dashboard'))->middlew
 Route::get('/inscripciones', [PublicRegistrationController::class, 'index'])->name('public.inscripciones');
 Route::post('/inscripciones/continuar', [PublicRegistrationController::class, 'selectDivision'])
     ->name('public.inscripciones.continuar');
+Route::get('/assets/logo-institucional', [PublicAssetController::class, 'institutionalLogo'])
+    ->name('public.assets.logo');
 
 Route::get('/inscripcion', [PublicRegistrationController::class, 'fallback'])->name('public.inscripcion.fallback');
 Route::get('/inscripcion/{season}/{division}', [PublicRegistrationController::class, 'create'])

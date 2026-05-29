@@ -76,10 +76,9 @@ class Setting extends Model
             return null;
         }
 
-        $url = Storage::disk('public')->url($path);
-
-        // Keep same-origin behavior even when APP_URL is not aligned with the current host.
-        return parse_url($url, PHP_URL_PATH) ?: $url;
+        return route('public.assets.logo', [
+            'v' => md5($path),
+        ], false);
     }
 
     public static function normalizePublicDiskPath(?string $storedPath): ?string

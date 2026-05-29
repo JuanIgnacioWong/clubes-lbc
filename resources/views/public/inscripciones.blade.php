@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
-    <x-card class="relative overflow-hidden border border-slate-700/80 bg-slate-900 p-8 text-slate-50 shadow-2xl">
+    <x-card tone="dark" class="relative overflow-hidden p-8">
         <div class="absolute -right-10 -top-10 h-44 w-44 rounded-full bg-brand-500/30 blur-2xl"></div>
         <div class="absolute -bottom-12 -left-8 h-44 w-44 rounded-full bg-sky-400/20 blur-2xl"></div>
 
