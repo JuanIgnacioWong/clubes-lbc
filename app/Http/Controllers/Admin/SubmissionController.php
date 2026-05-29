@@ -7,6 +7,7 @@ use App\Models\Submission;
 use App\Models\SubmissionVersion;
 use App\Services\AuditLogger;
 use App\Services\EventNotificationService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
@@ -48,6 +49,38 @@ class SubmissionController extends Controller
         $submission->load(['season', 'division', 'club', 'versions']);
 
         return view('admin.submissions.show', compact('submission'));
+    }
+
+    public function updateStatus(Request $request, Submission $submission): JsonResponse|RedirectResponse
+    {
+        $validated = $request->validate([
+            'status' => ['required', Rule::in([
+                Submission::STATUS_RECEIVED,
+                Submission::STATUS_UNDER_REVIEW,
+                Submission::STATUS_ACCEPTED,
+                Submission::STATUS_REJECTED,
+            ])],
+        ]);
+
+        $oldStatus = $submission->submission_status;
+        $newStatus = $validated['status'];
+
+        if ($oldStatus !== $newStatus) {
+            $submission->update(['submission_status' => $newStatus]);
+            AuditLogger::log('submission_status_changed', 'submission', $submission, 'Estado de postulación actualizado.', $request);
+        }
+
+        if ($request->expectsJson()) {
+            return response()->json([
+                'message' => 'Estado de postulación actualizado.',
+                'submission' => [
+                    'id' => $submission->id,
+                    'status' => $submission->submission_status,
+                ],
+            ]);
+        }
+
+        return redirect()->route('admin.submissions.index')->with('success', 'Estado de postulación actualizado.');
     }
 
     public function updatePaymentStatus(Request $request, Submission $submission, EventNotificationService $notifier): RedirectResponse

@@ -58,6 +58,8 @@ Route::middleware(['auth', 'admin'])->prefix('admin')->name('admin.')->group(fun
 
     Route::get('/submissions', [SubmissionController::class, 'index'])->name('submissions.index');
     Route::get('/submissions/{submission}', [SubmissionController::class, 'show'])->name('submissions.show');
+    Route::patch('/submissions/{submission}/status', [SubmissionController::class, 'updateStatus'])
+        ->name('submissions.update-status');
     Route::patch('/submissions/{submission}/payment-status', [SubmissionController::class, 'updatePaymentStatus'])
         ->name('submissions.payment-status');
     Route::patch('/submissions/{submission}/extra', [SubmissionController::class, 'allowExtraSubmission'])
