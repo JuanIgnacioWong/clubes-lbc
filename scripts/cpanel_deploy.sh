@@ -249,7 +249,7 @@ EOF
 else
   echo "[deploy][warn] No se detectó carpeta document root en public_html."
   echo "[deploy][warn] Define DEPLOY_PUBLIC_PATH en .env, por ejemplo:"
-  echo "[deploy][warn] DEPLOY_PUBLIC_PATH=/home/ligabasq/public_html/clubes.lbcchile.com"
+  echo "[deploy][warn] DEPLOY_PUBLIC_PATH=/home/ligabasq/public_html/clubes"
 fi
 
 echo "[deploy] Deploy completado"

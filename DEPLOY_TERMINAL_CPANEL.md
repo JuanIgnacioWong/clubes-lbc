@@ -8,8 +8,8 @@ Conéctate por SSH y clona el proyecto:
 
 ```bash
 ssh -p 22 USUARIO@HOST
-git clone --branch main https://github.com/TU_USUARIO/clubes-lbc.git /home/USUARIO/clubes-lbc
-cd /home/USUARIO/clubes-lbc
+git clone --branch main https://github.com/JuanIgnacioWong/clubes-lbc.git /home/ligabasq/repositories/clubes-lbc
+cd /home/ligabasq/repositories/clubes-lbc
 cp .env.cpanel.example .env
 ```
 
@@ -18,7 +18,7 @@ Edita `.env` con credenciales reales y define como mínimo:
 - `APP_ENV=production`
 - `APP_DEBUG=false`
 - `APP_URL=https://clubes.lbcchile.com`
-- `DEPLOY_PUBLIC_PATH=/home/USUARIO/public_html/clubes.lbcchile.com`
+- `DEPLOY_PUBLIC_PATH=/home/ligabasq/public_html/clubes`
 - `RUN_MIGRATIONS=0` (o `1` cuando corresponda)
 
 Primer deploy:
@@ -38,7 +38,7 @@ chmod +x scripts/remote_deploy.sh
 CPANEL_HOST=tu-host-cpanel \
 CPANEL_USER=tu-usuario-cpanel \
 CPANEL_PORT=22 \
-CPANEL_APP_PATH=/home/tu-usuario/clubes-lbc \
+CPANEL_APP_PATH=/home/ligabasq/repositories/clubes-lbc \
 BRANCH=main \
 ./scripts/remote_deploy.sh
 ```
